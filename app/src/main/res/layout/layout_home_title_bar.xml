@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/home_title_bar_style">
+
+    <LinearLayout
+        android:id="@+id/titleBar_location_lay"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:gravity="center_horizontal"
+        android:visibility="visible"
+        android:orientation="horizontal"
+        android:background="@drawable/imageview_btn_selector">
+
+        <ImageView
+            android:id="@+id/titleBar_me_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/ic_me"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/titleBar_ll_right_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/titleBar_rl_msg_num"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/imageview_btn_selector"
+            android:paddingStart="10dp"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/titleBar_msg_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/calendar"
+                android:visibility="visible"/>
+
+            <TextView
+                android:id="@+id/titleBar_news_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/titleBar_news_num_marginTop"
+                android:layout_marginLeft="@dimen/titleBar_news_num_marginLeft"
+                android:layout_marginRight="@dimen/titleBar_news_num_marginRight"
+                android:layout_toRightOf="@id/titleBar_msg_iv"
+                android:background="@mipmap/icon_message_nu"
+                android:gravity="center"
+                tools:text="20"
+                android:textSize="@dimen/textSize_10"
+                android:textColor="@color/home_title_bar_color"
+                android:visibility="invisible"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/titleBar_search_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_toRightOf="@+id/titleBar_location_lay"
+        android:layout_toLeftOf="@id/titleBar_ll_right_layout"
+        android:background="@drawable/edittext_round_background_yellow"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/titleBar_search_ll_paddingTop"
+        android:paddingBottom="@dimen/titleBar_search_ll_paddingBottom"
+        android:layout_marginStart="10dp"
+        android:visibility="visible">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/titleBar_search_iv_marginLeft"
+            android:layout_marginRight="@dimen/titleBar_search_iv_marginRight"
+            android:src="@mipmap/home_search"/>
+
+        <TextView
+            android:id="@+id/tv_titleBar_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="@string/titleBar_search_hint"
+            android:textColor="@color/title_bar_search_text_color"
+            android:textSize="@dimen/size_17"/>
+
+    </LinearLayout>
+</RelativeLayout>

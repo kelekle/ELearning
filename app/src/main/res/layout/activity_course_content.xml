@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".activity.CourseContentActivity">
+
+    <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
+        android:id="@+id/player_list_video"
+        android:layout_width="match_parent"
+        android:layout_height="220dp">
+
+    </fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="    课程简介：这是一门英语高级课程，对于考专业英语四六级的认帮助会很大"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+    <Button
+        android:id="@+id/syllabus_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/follow"
+        android:text="syllabus"
+        android:layout_gravity="left"
+        android:layout_marginStart="30dp"
+        android:textColor="@color/white"/>
+
+    <Button
+        android:id="@+id/follow_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/follow"
+        android:text="Follow"
+        android:layout_gravity="right"
+        android:layout_marginStart="160dp"
+        android:textColor="@color/white"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/my_comment"
+            android:visibility="gone"/>
+    </LinearLayout>
+<!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:fillViewport="true">-->
+
+<!--        <ListView-->
+<!--            android:id="@+id/lv_comments"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:listSelector="#00000000"-->
+<!--            android:divider="@color/blackk"-->
+<!--            android:dividerHeight="1dp"-->
+<!--            android:footerDividersEnabled="true"-->
+<!--            android:headerDividersEnabled="true">-->
+<!--        </ListView>-->
+
+<!--    </ScrollView>-->
+
+    <include layout="@layout/layout_text_feed"/>
+    <include layout="@layout/layout_text_feed"/>
+    <include layout="@layout/layout_text_feed"/>
+
+</LinearLayout>

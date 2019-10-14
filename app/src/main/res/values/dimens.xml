@@ -1,0 +1,65 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="font_12">12.0dip</dimen>
+    <dimen name="font_16">16.0dip</dimen>
+    <dimen name="font_18">18.0dip</dimen>
+
+    <dimen name="lay_12">12.0dip</dimen>
+    <dimen name="lay_16">16.0dip</dimen>
+    <dimen name="text_size">14.0sp</dimen>
+    <dimen name="textSize_6">6.0sp</dimen>
+    <dimen name="textSize_7">7.0sp</dimen>
+    <dimen name="textSize_8">8.0sp</dimen>
+    <dimen name="textSize_9">9.0sp</dimen>
+    <dimen name="textSize_10">10.0sp</dimen>
+    <dimen name="textSize_11">11.0sp</dimen>
+    <dimen name="textSize_12">12.0sp</dimen>
+    <dimen name="textSize_13">13.0sp</dimen>
+    <dimen name="textSize_14">14.0sp</dimen>
+    <dimen name="textSize_15">15.0sp</dimen>
+    <dimen name="textSize_16">16.0sp</dimen>
+    <dimen name="textSize_17">17.0sp</dimen>
+    <dimen name="textSize_18">18.0sp</dimen>
+    <dimen name="textSize_19">19.0sp</dimen>
+    <dimen name="textSize_20">20.0sp</dimen>
+    <dimen name="textSize_21">21.0sp</dimen>
+    <dimen name="textSize_22">22.0sp</dimen>
+    <dimen name="textSize_23">23.0sp</dimen>
+    <dimen name="textSize_24">24.0sp</dimen>
+    <dimen name="textSize_25">25.0sp</dimen>
+    <dimen name="textSize_26">26.0sp</dimen>
+    <dimen name="textSize_27">27.0sp</dimen>
+    <dimen name="textSize_28">28.0sp</dimen>
+    <dimen name="textSize_29">29.0sp</dimen>
+    <dimen name="size_17">12.0sp</dimen>
+    <dimen name="size_18">13.0sp</dimen>
+    <dimen name="size_19">14.0sp</dimen>
+    <dimen name="size_20">15.0sp</dimen>
+    <dimen name="size_21">16.0sp</dimen>
+    <dimen name="size_22">17.0sp</dimen>
+    <dimen name="size_23">17.0sp</dimen>
+    <dimen name="size_24">19.0sp</dimen>
+
+    <dimen name="location_lay_width">74dp</dimen>
+
+    <!-- 标题栏 -->
+    <dimen name="titleBar_scan_img_paddingLeft">10dp</dimen>
+    <dimen name="titleBar_scan_img_paddingRight">10dp</dimen>
+    <dimen name="titleBar_news_num_marginLeft">-9dp</dimen>
+    <dimen name="titleBar_news_num_marginRight">8dp</dimen>
+    <dimen name="titleBar_news_num_marginTop">10dp</dimen>
+    <dimen name="round_btn_green_tk_corner">2.0dip</dimen>
+
+    <!--广告条-->
+    <dimen name="banner_height">140dp</dimen>
+
+
+    <dimen name="titleBar_search_ll_paddingTop">5dp</dimen>
+    <dimen name="titleBar_search_ll_paddingBottom">5dp</dimen>
+    <dimen name="titleBar_search_iv_marginLeft">10dp</dimen>
+    <dimen name="titleBar_search_iv_marginRight">10dp</dimen>
+
+</resources>

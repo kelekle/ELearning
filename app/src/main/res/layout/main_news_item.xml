@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+<!--        <TextView-->
+<!--            android:id="@+id/tv_topic"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="5dp"-->
+<!--            android:text="今日热闻"-->
+<!--            android:textColor="@color/"-->
+<!--            android:textSize="13sp"-->
+<!--            android:visibility="gone" />-->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+
+            <ImageView
+                android:id="@+id/iv_title"
+                android:layout_width="140dp"
+                android:layout_height="90dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:scaleType="fitXY" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@id/iv_title"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:text="如何看待当下这种越来越普遍的“沉默”人格？"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/course_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/tag"
+                android:paddingStart="5dp"
+                android:paddingTop="10dp"
+                android:drawablePadding="5dp"
+                android:textColor="@color/black1"
+                android:layout_below="@id/tv_title"
+                android:text="英语"/>
+
+            <TextView
+                android:id="@+id/course_teacher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="50dp"
+                android:paddingTop="10dp"
+                android:textColor="@color/black1"
+                android:layout_below="@id/tv_title"
+                android:layout_toRightOf="@id/course_type"
+                android:text="王老师"/>
+
+            <TextView
+                android:id="@+id/course_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="20dp"
+                android:paddingTop="10dp"
+                android:textColor="@color/black1"
+                android:layout_below="@id/tv_title"
+                android:layout_toRightOf="@id/course_teacher"
+                android:visibility="gone"
+                android:text="2019-01-01"/>
+
+        </RelativeLayout>
+
+    </FrameLayout>
+</LinearLayout>

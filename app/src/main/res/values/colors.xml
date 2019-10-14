@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#ff000000</color>
+    <color name="blacky">#ff000000</color>
+    <color name="black1">#7A7E83</color>
+    <color name="blackk1">#ff7c8081</color>
+    <color name="blackk">#ffe6e6e6</color>
+    <color name="black2">#ffeeeeee</color>
+    <color name="gray01">#80666666</color>
+    <color name="gray_bg">#ECECEC</color>
+
+    <color name="account_input_bg_color">#FCFAF2</color>
+    <color name="login_input_active">#31b968</color>
+    <color name="account_lock_bg">#ff43815c</color>
+    <color name="account_pressed_true">#14b94d</color>
+    <color name="account_lock_font_color">#FF68997C</color>
+
+    <color name="title_bar_search_text_color">#ffffa37e</color>
+    <color name="home_title_bar_color">#5FB9B0</color>
+    <color name="title_bar_search_color">#409990</color>
+    <color name="image_view_btn_pressed_bgColor">#30000000</color>
+
+
+</resources>
