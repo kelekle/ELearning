@@ -5,21 +5,21 @@
 # ScreenShots
 ### Login ###
 <img src="screenshots/login.png" width="20%" />
-### register ###
+register
 <img src="screenshots/register.png" width="20%" />
-### find pwd ###
+find pwd
 <img src="screenshots/forgetPwd.png" width="20%" />
-### calendar ###
+calendar
 <img src="screenshots/calendar.png" width="20%" />
-### courseDeatil ###
+courseDeatil
 <img src="screenshots/courseDetail.png" width="20%" />
-### courseList ###
+courseList
 <img src="screenshots/courseList.png" width="20%" />
-### video play ###
+video play
 <img src="screenshots/playvideo.png" width="20%" />
-### syllabus ###
+syllabus
 <img src="screenshots/syllabus.png" width="20%" />
-### notifications ###
+notifications
 <img src="screenshots/notifications.png" width="20%" />
-### drawerlayout ###
+drawerlayout
 <img src="screenshots/drawerlayout.png" width="20%" />
