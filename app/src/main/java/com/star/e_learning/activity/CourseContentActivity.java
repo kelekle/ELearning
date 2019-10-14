@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.star.e_learning.R;
-import com.star.e_learning.bean.Course;
 
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 
@@ -18,7 +17,7 @@ public class CourseContentActivity extends AppCompatActivity implements View.OnC
     private Button syllabus;
 
     private JCVideoPlayerStandard jcVideoPlayerStandard;
-    String url = "http://txycdn.miaopai.com/stream/ed5HCfnhovu3tyIQAiv60Q__.mp4?ssig=8c0c63d0e5f73ba30866ce78758f27ac&time_stamp=1570965192987";
+    String url = "http://wsqncdn.miaopai.com/stream/ed5HCfnhovu3tyIQAiv60Q__.mp4?ssig=49b4de055518087c72b26cdad6a91ef3&time_stamp=1571028173054";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +40,37 @@ public class CourseContentActivity extends AppCompatActivity implements View.OnC
         }
         super.onBackPressed();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 
     @Override
     protected void onPause() {
