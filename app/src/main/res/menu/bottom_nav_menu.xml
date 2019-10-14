@@ -9,7 +9,7 @@
     <item
         android:id="@+id/navigation_comment"
         android:icon="@mipmap/my_comment"
-        android:title="Comment" />
+        android:title="Notification" />
 
     <item
         android:id="@+id/navigation_task"
