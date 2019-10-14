@@ -3,7 +3,7 @@
 
 
 # ScreenShots
-## Login ##
+### Login ###
 <img src="screenshots/login.png" width="20%" />
 ## register
 <img src="screenshots/register.png" width="20%" />
