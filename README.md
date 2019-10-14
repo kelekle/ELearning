@@ -20,7 +20,7 @@ courseList
 video play
 <img src="screenshots/playvideo.png" width="20%" />
 syllabus
-<img src="screenshots/syllabus.png" width="20%" />
+<img src="screenshots/courseSyllabus.png" width="20%" />
 notifications
 <img src="screenshots/notifications.png" width="20%" />
 drawerlayout
