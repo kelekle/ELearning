@@ -1,13 +1,18 @@
 package com.star.e_learning.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -20,17 +25,33 @@ import java.util.List;
 /**
  * Created by wwjun.wang on 2015/8/13.
  */
-public class CourseItemAdapter extends BaseAdapter {
+public class CourseItemAdapter extends RecyclerView.Adapter<CourseItemAdapter.ViewHolder> {
+
     private List<Course> entities;
     private Context context;
     private ImageLoader mImageloader;
     private DisplayImageOptions options;
 
+    private OnItemClickListener onItemClickListener;
+
+    /**
+     * 设置RecyclerView某个的监听
+     * @param onItemClickListener
+     */
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener){
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
     public CourseItemAdapter(Context context) {
+        Log.d("mytag", "constructor");
         this.context = context;
         this.entities = new ArrayList<>();
-        mImageloader = ImageLoader.getInstance();
-        options = new DisplayImageOptions.Builder()
+        this.mImageloader = ImageLoader.getInstance();
+        this.options = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
                 .build();
@@ -39,16 +60,54 @@ public class CourseItemAdapter extends BaseAdapter {
     public void addList(List<Course> items) {
         this.entities.addAll(items);
         notifyDataSetChanged();
+        Log.d("mytag", "add");
+    }
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Log.d("mytag", "create");
+        View convertView = LayoutInflater.from(context).inflate(R.layout.main_news_item, parent, false);
+        ViewHolder holder = new ViewHolder(convertView);
+        return holder;
     }
 
     @Override
-    public int getCount() {
-        return entities.size();
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return entities.get(position);
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+        Log.d("mytag", "bind");
+        Course entity = entities.get(position);
+        holder.tv_title.setText(entity.getTitle());
+        switch (entity.getType()){
+            case 1:
+                holder.course_tag.setText("语文");
+                break;
+            case 2:
+                holder.course_tag.setText("数学");
+                break;
+            case 3:
+                holder.course_tag.setText("英语");
+                break;
+            case 4:
+                holder.course_tag.setText("物理");
+                break;
+            case 5:
+                holder.course_tag.setText("化学");
+                break;
+        }
+        holder.course_teacher.setText("by "+entity.getTeacher());
+        holder.course_date.setText("开课时间: "+entity.getDate());
+//      mImageloader.displayImage(entity.getImage(), viewHolder.iv_title, options);
+        holder.iv_title.setImageResource(R.mipmap.english_course);
+        if (onItemClickListener != null) {
+            holder.iv_title.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //在TextView的地方进行监听点击事件，并且实现接口
+                    onItemClickListener.onItemClick(position);
+                }
+            });
+        }
+        Log.d("mytag", entity.getDate() +" "+entity.getDescription());
     }
 
     @Override
@@ -57,73 +116,27 @@ public class CourseItemAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder viewHolder = null;
-        if (convertView == null) {
-            viewHolder = new ViewHolder();
-            convertView = LayoutInflater.from(context).inflate(R.layout.main_news_item, parent, false);
-            viewHolder.tv_title = (TextView) convertView.findViewById(R.id.tv_title);
-            viewHolder.iv_title = (ImageView) convertView.findViewById(R.id.iv_title);
-            viewHolder.course_teacher = convertView.findViewById(R.id.course_teacher);
-            viewHolder.course_tag = convertView.findViewById(R.id.course_type);
-            viewHolder.course_date = convertView.findViewById(R.id.course_date);
-            convertView.setTag(viewHolder);
-        } else {
-            viewHolder = (ViewHolder) convertView.getTag();
-        }
-//        String readSeq = PreUtils.getStringFromDefault(context, "read", "");
-//        if (readSeq.contains(entities.get(position).getId() + "")) {
-//            viewHolder.tv_title.setTextColor(context.getResources().getColor(R.color.clicked_tv_textcolor));
-//        } else {
-            viewHolder.tv_title.setTextColor(context.getResources().getColor(android.R.color.black));
-//        }
-        ((LinearLayout) viewHolder.iv_title.getParent().getParent().getParent()).setBackgroundColor(context.getResources().getColor(R.color.white));
-//        viewHolder.tv_topic.setTextColor(context.getResources().getColor(R.color.title_bar_search_text_color));
-        Course entity = entities.get(position);
-//        if (entity.getType() == Constant.TOPIC) {
-////            ((FrameLayout) viewHolder.tv_topic.getParent()).setBackgroundColor(Color.TRANSPARENT);
-//            viewHolder.tv_title.setVisibility(View.GONE);
-//            viewHolder.iv_title.setVisibility(View.GONE);
-////            viewHolder.tv_topic.setVisibility(View.VISIBLE);
-////            viewHolder.tv_topic.setText(entity.getTitle());
-//        } else {
-//            ((FrameLayout) viewHolder.tv_topic.getParent()).setBackgroundResource(R.drawable.item_background_selector_dark);
-//            viewHolder.tv_topic.setVisibility(View.GONE);
-//            viewHolder.tv_title.setVisibility(View.VISIBLE);
-//            viewHolder.iv_title.setVisibility(View.VISIBLE);
-            viewHolder.tv_title.setText(entity.getTitle());
-            switch (entity.getType()){
-                case 1:
-                    viewHolder.course_tag.setText("语文");
-                    break;
-                case 2:
-                    viewHolder.course_tag.setText("数学");
-                    break;
-                case 3:
-                    viewHolder.course_tag.setText("英语");
-                    break;
-                case 4:
-                    viewHolder.course_tag.setText("物理");
-                    break;
-                case 5:
-                    viewHolder.course_tag.setText("化学");
-                    break;
-            }
-            viewHolder.course_teacher.setText("by "+entity.getTeacher());
-            viewHolder.course_date.setText("开课时间: "+entity.getDate());
-//            mImageloader.displayImage(entity.getImage(), viewHolder.iv_title, options);
-        viewHolder.iv_title.setImageResource(R.mipmap.english_course);
-//        }
-        return convertView;
+    public int getItemCount() {
+        Log.d("mytag", "count");
+        return entities.size();
     }
 
+    protected static class ViewHolder extends RecyclerView.ViewHolder{
 
-    public static class ViewHolder {
         TextView course_teacher;
         TextView course_tag;
         TextView course_date;
         TextView tv_title;
         ImageView iv_title;
+
+        protected ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            tv_title = (TextView)itemView.findViewById(R.id.tv_title);
+            iv_title = (ImageView) itemView.findViewById(R.id.iv_title);
+            course_teacher = itemView.findViewById(R.id.course_teacher);
+            course_tag = itemView.findViewById(R.id.course_type);
+            course_date = itemView.findViewById(R.id.course_date);
+        }
     }
 
 }

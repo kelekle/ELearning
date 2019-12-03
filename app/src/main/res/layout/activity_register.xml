@@ -42,6 +42,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_height="48dp" >
                 <EditText
+                    android:id="@+id/et_register_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
@@ -78,6 +79,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_height="48dp" >
                 <EditText
+                    android:id="@+id/et_register_verify"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
@@ -86,7 +88,7 @@
                     android:paddingBottom="18dp"
                     android:hint="@string/register_verification"
                     android:minLines="1"
-                    android:maxLength="11"
+                    android:maxLength="4"
                     android:focusable="true">
                 </EditText>
                 <LinearLayout
@@ -145,6 +147,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_height="48dp" >
                 <EditText
+                    android:id="@+id/et_register_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
@@ -153,7 +156,7 @@
                     android:paddingBottom="18dp"
                     android:hint="@string/register_password"
                     android:minLines="1"
-                    android:maxLength="11"
+                    android:maxLength="12"
                     android:focusable="true">
                 </EditText>
                 <ImageView
@@ -182,6 +185,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_height="48dp" >
                 <EditText
+                    android:id="@+id/et_register_confirm_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
@@ -190,7 +194,7 @@
                     android:paddingBottom="18dp"
                     android:hint="@string/register_confirm_password"
                     android:minLines="1"
-                    android:maxLength="11"
+                    android:maxLength="12"
                     android:focusable="true">
                 </EditText>
                 <ImageView
@@ -207,7 +211,7 @@
 
 
     <Button
-        android:id="@+id/bt_register2_submit"
+        android:id="@+id/bt_register_submit"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginTop="40dp"

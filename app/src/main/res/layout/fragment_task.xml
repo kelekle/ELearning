@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical">
-
-    <include layout="@layout/layout_home_title_bar"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,6 +30,7 @@
                 android:layout_height="wrap_content"
                 android:text="Dept. of CSE"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
+
         </LinearLayout>
 
         <View
@@ -113,7 +117,9 @@
                 android:text="2nd Mid Exams start next week from Tuesday."
                 android:textColor="#FFF"
                 android:textSize="30sp" />
+
         </LinearLayout>
     </ScrollView>
 
 </LinearLayout>
+</FrameLayout>

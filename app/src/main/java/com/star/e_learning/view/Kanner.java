@@ -14,6 +14,7 @@ import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -36,6 +37,7 @@ public class Kanner extends FrameLayout implements OnClickListener {
     private List<View> views;
     private Context context;
     private ViewPager vp;
+//    private RecyclerView recyclerView;
     private boolean isAutoPlay;
     private int currentItem;
     private int delayTime;
@@ -84,7 +86,7 @@ public class Kanner extends FrameLayout implements OnClickListener {
     private void initUI() {
         View view = LayoutInflater.from(context).inflate(
                 R.layout.kanner_layout, this, true);
-        vp = (ViewPager) view.findViewById(R.id.vp);
+        vp =  view.findViewById(R.id.kanner);
         ll_dot = (LinearLayout) view.findViewById(R.id.ll_dot);
         ll_dot.removeAllViews();
 
@@ -216,7 +218,6 @@ public class Kanner extends FrameLayout implements OnClickListener {
         }
 
     }
-
 
     public void setOnItemClickListener(OnItemClickListener mItemClickListener) {
         this.mItemClickListener = mItemClickListener;

@@ -23,10 +23,11 @@
     <string name="reset_pwd_confirm">"确定"</string>
     <string name="titleBar_search_hint">请输入课程或老师名称</string>
     <string name="title_activity_home">HomeActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_course">Course</string>
+    <string name="title_task">Task</string>
     <string name="title_notifications">Notifications</string>
     <string name="about_me">It\'s not who I am underneath, but what I do that defines me. I am the dark knight.</string>
+    <string name="title_activity_main">MainActivity</string>
 
 
 </resources>

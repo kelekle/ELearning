@@ -4,9 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <krelve.app.kuaihu.view.Kanner
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/kanner"
         android:layout_width="match_parent"
-        android:layout_height="230dp" />
+        android:layout_height="176dp" />
 
 </LinearLayout>

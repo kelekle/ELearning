@@ -26,5 +26,11 @@
     <color name="title_bar_search_color">#409990</color>
     <color name="image_view_btn_pressed_bgColor">#30000000</color>
 
+    <color name="color_tab_1">#455C65</color>
+    <color name="color_tab_2">#00886A</color>
+    <color name="color_tab_3">#8B6B62</color>
+
+    <color name="color_notification_back">#ffcd33</color>
+    <color name="color_notification_text">#3E4757</color>
 
 </resources>

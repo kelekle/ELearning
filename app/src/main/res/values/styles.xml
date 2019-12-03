@@ -8,14 +8,16 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="HomeTheme">
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
     <!--首页titlebar样式-->
     <style name="home_title_bar_style">
-        <item name="android:gravity">center_vertical</item>
         <item name="android:background">@color/home_title_bar_color</item>
-        <item name="android:paddingLeft">0dp</item>
-        <item name="android:paddingRight">0dp</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_height">48.0dip</item>
     </style>
 
     <style name="txt_titleStyle1">

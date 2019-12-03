@@ -23,7 +23,6 @@
 
     </LinearLayout>
 
-
     <LinearLayout
         android:id="@+id/titleBar_ll_right_layout"
         android:layout_width="wrap_content"
@@ -41,11 +40,10 @@
             android:visibility="visible">
 
             <ImageView
-                android:id="@+id/titleBar_msg_iv"
+                android:id="@+id/titleBar_calendar_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:scaleType="fitCenter"
                 android:src="@mipmap/calendar"
                 android:visibility="visible"/>
 
@@ -56,7 +54,7 @@
                 android:layout_marginTop="@dimen/titleBar_news_num_marginTop"
                 android:layout_marginLeft="@dimen/titleBar_news_num_marginLeft"
                 android:layout_marginRight="@dimen/titleBar_news_num_marginRight"
-                android:layout_toRightOf="@id/titleBar_msg_iv"
+                android:layout_toRightOf="@id/titleBar_calendar_iv"
                 android:background="@mipmap/icon_message_nu"
                 android:gravity="center"
                 tools:text="20"
@@ -71,14 +69,12 @@
     <LinearLayout
         android:id="@+id/titleBar_search_ll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="28dp"
         android:layout_centerInParent="true"
         android:layout_toRightOf="@+id/titleBar_location_lay"
         android:layout_toLeftOf="@id/titleBar_ll_right_layout"
         android:background="@drawable/edittext_round_background_yellow"
         android:orientation="horizontal"
-        android:paddingTop="@dimen/titleBar_search_ll_paddingTop"
-        android:paddingBottom="@dimen/titleBar_search_ll_paddingBottom"
         android:layout_marginStart="10dp"
         android:visibility="visible">
 
@@ -92,6 +88,7 @@
 
         <TextView
             android:id="@+id/tv_titleBar_search"
+            android:layout_gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:singleLine="true"
