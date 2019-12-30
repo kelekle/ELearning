@@ -1,0 +1,66 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical" >
+
+    <include layout="@layout/user_edit_title" />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/edit_input_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        app:met_underlineColor="@color/login_input_active"
+        app:met_primaryColor="@color/login_input_active"
+        app:met_baseColor="@color/login_input_active"
+        app:met_textColor="@color/black"
+        app:met_errorColor="@color/red"
+        app:met_helperTextColor="@color/gray_bg"
+        app:met_bottomTextSize="14sp"
+        app:met_maxCharacters="10"
+        app:met_minCharacters="1"
+        app:met_helperText="请输入10位以内的昵称"
+        app:met_clearButton="true"
+        android:textCursorDrawable="@drawable/edit_cursor_color"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="10dp"
+        android:singleLine="true"
+        android:textSize="16sp"
+        android:text="11"/>
+
+<!--    <EditText-->
+<!--        android:id="@+id/edit_description"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:background="@drawable/edittext_login"-->
+<!--        android:hint="请输入您的描述（选填）"-->
+<!--        android:gravity="center"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginLeft="10dp"-->
+<!--        android:layout_marginRight="10dp"-->
+<!--        android:singleLine="true"-->
+<!--        android:textColor="@color/greenn"-->
+<!--        android:textColorHint="@color/gray"-->
+<!--        android:textSize="16sp" />-->
+
+
+
+<!--    <Button-->
+<!--            android:id="@+id/btn_start"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="45dp"-->
+<!--            android:layout_marginTop="40dp"-->
+<!--            android:layout_marginLeft="12dp"-->
+<!--            android:layout_marginRight="12dp"-->
+<!--            android:background="@drawable/btn_bg_blue"-->
+<!--            android:paddingBottom="7dp"-->
+<!--            android:paddingTop="7dp"-->
+<!--            android:text="开始体验"-->
+<!--            android:textColor="@android:color/white"-->
+<!--            android:textSize="18sp" />-->
+
+</LinearLayout>

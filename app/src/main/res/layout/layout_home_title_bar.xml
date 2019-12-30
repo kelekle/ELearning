@@ -3,25 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/home_title_bar_style">
 
-    <LinearLayout
-        android:id="@+id/titleBar_location_lay"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_centerVertical="true"
-        android:gravity="center_horizontal"
-        android:visibility="visible"
-        android:orientation="horizontal"
-        android:background="@drawable/imageview_btn_selector">
+<!--    <LinearLayout-->
+<!--        android:id="@+id/titleBar_location_lay"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        android:gravity="center_horizontal"-->
+<!--        android:visibility="visible"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:background="@drawable/imageview_btn_selector">-->
 
-        <ImageView
-            android:id="@+id/titleBar_me_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="10dp"
-            android:src="@mipmap/ic_me"/>
+<!--        <ImageView-->
+<!--            android:id="@+id/titleBar_me_iv"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_gravity="center_vertical"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:src="@mipmap/ic_me"/>-->
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
     <LinearLayout
         android:id="@+id/titleBar_ll_right_layout"
@@ -32,7 +32,7 @@
         android:orientation="horizontal">
 
         <RelativeLayout
-            android:id="@+id/titleBar_rl_msg_num"
+            android:id="@+id/titleBar_calendar"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@drawable/imageview_btn_selector"
@@ -69,9 +69,8 @@
     <LinearLayout
         android:id="@+id/titleBar_search_ll"
         android:layout_width="match_parent"
-        android:layout_height="28dp"
+        android:layout_height="30dp"
         android:layout_centerInParent="true"
-        android:layout_toRightOf="@+id/titleBar_location_lay"
         android:layout_toLeftOf="@id/titleBar_ll_right_layout"
         android:background="@drawable/edittext_round_background_yellow"
         android:orientation="horizontal"

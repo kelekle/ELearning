@@ -8,7 +8,7 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     android:background="#5FB9B0"
-    tools:context=".activity.RegisterActivity">
+    tools:context=".ui.activity.RegisterActivity">
 
     <include
         android:id="@+id/ly_register_bar"
@@ -50,8 +50,9 @@
                     android:paddingStart="60dp"
                     android:paddingBottom="18dp"
                     android:hint="@string/register_account_hint"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
                     android:minLines="1"
-                    android:maxLength="11"
                     android:focusable="true">
                 </EditText>
                 <ImageView
@@ -217,11 +218,11 @@
         android:layout_marginTop="40dp"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
-        android:background="@drawable/bg_login_submit_lock"
+        android:background="@drawable/bg_login_submit"
         android:elevation="0dp"
         android:outlineProvider="none"
         android:text="@string/register_hint"
-        android:textColor="@color/account_lock_font_color"
+        android:textColor="@color/white"
         android:textSize="@dimen/font_18"
         android:translationZ="0dp"
         tools:targetApi="lollipop" />

@@ -67,20 +67,16 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:layout_weight="1"
-                    android:background="@null"
-                    android:ems="15"
                     android:focusable="true"
+                    android:background="@null"
                     android:hint="@string/account_hint"
-                    android:imeOptions="actionDone"
-                    android:inputType="phone"
-                    android:lines="1"
+                    android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:minLines="1"
-                    android:maxLength="11"
                     android:paddingLeft="4dp"
                     android:paddingRight="4dp"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/blackk"
+                    android:textColorHint="@color/black1"
                     android:textCursorDrawable="@null"/>
 
                 <ImageView
@@ -137,7 +133,7 @@
                     android:paddingLeft="4dp"
                     android:paddingRight="4dp"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/blackk"
+                    android:textColorHint="@color/black1"
                     android:textCursorDrawable="@null" />
 
                 <ImageView
@@ -160,19 +156,36 @@
                 android:layout_marginLeft="24dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="24dp"
-                android:background="@drawable/bg_login_submit_lock"
+                android:background="@drawable/bg_login_submit"
                 android:elevation="0dp"
                 android:outlineProvider="none"
                 android:text="@string/login"
-                android:textColor="@color/account_lock_font_color"
+                android:textColor="@color/white"
                 android:textSize="18dp"
                 tools:targetApi="lollipop" />
+
+            <ImageView
+                android:id="@+id/iv_login_qq"
+                android:layout_marginTop="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:contentDescription="@null"
+                android:padding="4dp"
+                android:scaleType="centerInside"
+                android:src="@mipmap/qq" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="QQ登录"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginLeft="24dp"
-                android:layout_marginTop="150dp"
+                android:layout_marginTop="25dp"
                 android:layout_marginRight="24dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">

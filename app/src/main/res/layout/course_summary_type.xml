@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="11dp"
+        android:layout_marginRight="11dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="7dp"
+        app:cardElevation="6dp"
+        app:cardCornerRadius="10dp">
+
+        <RelativeLayout
+            android:id="@+id/view_foreground"
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
+                android:textStyle="bold"
+                android:textColor="@color/colorTextTitle"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:drawableLeft="@mipmap/comment"
+                android:drawablePadding="5dp"
+                android:text="Comments"
+                android:textSize="17sp"
+                android:id="@+id/title" />
+
+            <TextView
+                android:id="@+id/max_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title"
+                android:layout_marginStart="20dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="5dp"
+                android:text="Max"
+                />
+
+            <TextView
+                android:id="@+id/medium_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/max_title"
+                android:layout_marginStart="20dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"
+                android:text="Medium"
+                />
+
+            <TextView
+                android:id="@+id/min_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/medium_title"
+                android:layout_marginStart="20dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"
+                android:text="Min"
+                />
+
+            <TextView
+                android:id="@+id/max"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginEnd="16dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@+id/max_title"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@color/colorTextTitle"
+                android:maxLines="1"
+                android:drawablePadding="10dp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:text="89分" />
+
+            <TextView
+                android:id="@+id/medium"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginEnd="16dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@id/medium_title"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@color/colorTextTitle"
+                android:maxLines="1"
+                android:drawablePadding="10dp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:text="80分" />
+
+            <TextView
+                android:id="@+id/min"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginEnd="16dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@id/min_title"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@color/colorTextTitle"
+                android:maxLines="1"
+                android:drawablePadding="10dp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:text="60分" />
+
+            <TextView
+                android:id="@+id/max_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@+id/max_title"
+                android:layout_toStartOf="@id/max"
+                android:layout_toEndOf="@+id/max_title"
+                android:fontFamily="sans-serif-light"
+                android:maxLines="1"
+                android:drawablePadding="10dp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textColor="@color/black1"
+                android:text="This course is really good!" />
+
+            <TextView
+                android:id="@+id/medium_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@id/medium_title"
+                android:layout_toStartOf="@id/medium"
+                android:layout_toEndOf="@+id/medium_title"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@color/black1"
+                android:maxLines="1"
+                android:drawablePadding="10dp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:text="This course is just soso..." />
+
+            <TextView
+                android:id="@+id/min_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_alignTop="@id/min_title"
+                android:layout_toEndOf="@+id/min_title"
+                android:layout_toStartOf="@+id/min"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@color/black1"
+                android:maxLines="1"
+                android:drawablePadding="10dp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:text="This course is really bad!" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

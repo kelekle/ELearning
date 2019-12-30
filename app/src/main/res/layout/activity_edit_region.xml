@@ -1,0 +1,51 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical" >
+
+    <include layout="@layout/user_edit_title" />
+
+    <RelativeLayout
+        android:id="@+id/profile_region_line"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:paddingEnd="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="55dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            style="@style/TxtTitle"
+            android:paddingLeft="16dp"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:text="省市"/>
+
+        <TextView
+            android:id="@+id/profile_region"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="30dp"
+            android:layout_alignParentRight="true"
+            style="@style/TxtTitle"
+            android:paddingLeft="16dp"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:text="陕西-咸阳"/>
+
+        <ImageView
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="50.0dip"
+            android:src="@mipmap/right" />
+
+    </RelativeLayout>
+
+</LinearLayout>
