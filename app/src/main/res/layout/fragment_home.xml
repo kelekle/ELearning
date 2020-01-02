@@ -93,6 +93,7 @@
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <include layout="@layout/error" />
+        
     </RelativeLayout>
 
 </RelativeLayout>

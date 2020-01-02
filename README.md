@@ -1,6 +1,7 @@
 # ELearning
 一个学习的App，注册、登录、课程浏览、课程学习、更改个人信息、自动更新等功能
 
+##  [后端服务器地址](https://github.com/kelekle/ELearnService "ElearnService"). 
 
 # 说明
 ## 老师，您好，由于之前搞错了文档里的意思，我把所有的文档都写在一块了 ##
