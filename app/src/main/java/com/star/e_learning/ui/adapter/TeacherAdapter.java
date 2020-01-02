@@ -1,7 +1,6 @@
 package com.star.e_learning.ui.adapter;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.view.LayoutInflater;
@@ -12,22 +11,16 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 import com.star.e_learning.R;
 import com.star.e_learning.api.ApiClient;
 import com.star.e_learning.api.ApiInterface;
-import com.star.e_learning.api.Utils;
+import com.star.e_learning.util.Utils;
 import com.star.e_learning.bean.Teacher;
 import com.star.e_learning.ui.activity.CourseDetailActivity;
-import com.star.e_learning.ui.activity.HomeActivity;
 
 import java.io.File;
 import java.util.ArrayList;

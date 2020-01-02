@@ -44,12 +44,11 @@
                 android:id="@+id/layoutDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/title"
                 android:background="@drawable/round_white"
                 android:padding="5dp"
+                android:layout_below="@id/volume"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="-50dp">
+                android:layout_marginRight="20dp">
 
                 <ImageView
                     android:src="@drawable/ic_date"
@@ -114,6 +113,7 @@
 
             <TextView
                 android:id="@+id/status"
+                android:layout_marginStart="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_below="@id/desc"
@@ -126,16 +126,6 @@
                 android:ellipsize="end"
                 android:text="Time" />
 
-            <ImageView
-                android:id="@+id/download"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_below="@id/desc"
-                android:padding="5dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="21dp"
-                android:layout_marginEnd="21dp"
-                android:src="@mipmap/ic_pause" />
 
         </RelativeLayout>
 

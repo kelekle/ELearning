@@ -1,18 +1,16 @@
 package com.star.e_learning.ui.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
@@ -23,17 +21,14 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.star.e_learning.R;
 import com.star.e_learning.api.ApiClient;
 import com.star.e_learning.api.ApiInterface;
-import com.star.e_learning.api.Utils;
+import com.star.e_learning.ui.fragment.MaterialFragment;
+import com.star.e_learning.util.Utils;
 import com.star.e_learning.bean.Material;
 import com.star.e_learning.bean.Model;
-import com.star.e_learning.bean.MultiComment;
 import com.star.e_learning.ui.activity.CourseDetailActivity;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,7 +78,7 @@ public class MaterialAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.material_audio_type, parent, false);
                 return new AudioViewHolder(view);
             case Model.PDF_TYPE:
-                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.course_summary_type, parent, false);
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.material_pdf_type, parent, false);
                 return new PDFViewHolder(view);
         }
         return null;
@@ -107,7 +102,8 @@ public class MaterialAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     }
                     final File videoFile = new File(context.getExternalFilesDir(null) + "/material/" +
                             ((Material)object.getData()).getMaterialUrl().replace("\\","/"));
-                    Call<ResponseBody> call = apiInterface.getMaterialsMedia(((Material)object.getData()).getId());
+                    Call<ResponseBody> call = apiInterface.getMaterialsFile(((Material)object.getData()).getId());
+                    System.out.println("start download video: " + videoFile.getAbsolutePath());
                     call.enqueue(new Callback<ResponseBody>() {
                         @Override
                         public void onResponse(Call<ResponseBody> call, final Response<ResponseBody> response) {
@@ -119,8 +115,12 @@ public class MaterialAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                                         ((CourseDetailActivity) context).runOnUiThread(new Runnable() {
                                             @Override
                                             public void run() {
+                                                System.out.println("already download video: " + videoFile.getAbsolutePath());
                                                 ((VideoViewHolder) holder).progressBar.setVisibility(View.INVISIBLE);
                                                 ((VideoViewHolder) holder).videoView.setVideoURI(Uri.fromFile(videoFile));
+                                                ((VideoViewHolder) holder).videoView.setMediaController(new MediaController(context));
+                                                ((VideoViewHolder) holder).videoView.start();
+                                                ((VideoViewHolder) holder).videoView.requestFocus();
                                             }
                                         });
                                         return null;
@@ -155,7 +155,7 @@ public class MaterialAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     }
                     final File path = new File(context.getExternalFilesDir(null) + "/material/"
                             + ((Material)object.getData()).getMaterialUrl().replace("\\","/"));
-                    Call<ResponseBody> photo = apiInterface.getCoursePhoto(((Material)object.getData()).getId());
+                    Call<ResponseBody> photo = apiInterface.getCoursePhoto(MaterialFragment.cid);
                     photo.enqueue(new Callback<ResponseBody>() {
                         @Override
                         public void onResponse(Call<ResponseBody> call, final Response<ResponseBody> response) {
@@ -195,7 +195,7 @@ public class MaterialAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     break;
                 case Model.AUDIO_TYPE:
                     ((AudioViewHolder) holder).floatingActionButton.setEnabled(false);
-                    ((AudioViewHolder) holder).floatingActionButton.setBackgroundColor(context.getResources().getColor(R.color.gray01));
+                    ((AudioViewHolder) holder).floatingActionButton.setBackgroundColor(context.getResources().getColor(R.color.black));
                     ((AudioViewHolder) holder).courseName.setText(((Material)object.getData()).getMaterialUrl().substring(4));
                     ((AudioViewHolder) holder).openDate.setText(Utils.DateFormat(((Material)object.getData()).getCreateDate()));
                     ((AudioViewHolder) holder).description.setText(((Material)object.getData()).getDescription());
@@ -207,7 +207,8 @@ public class MaterialAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     }
                     final File audioPath = new File(context.getExternalFilesDir(null) + "/material/"
                             + ((Material)object.getData()).getMaterialUrl().replace("\\","/"));
-                    Call<ResponseBody> audio = apiInterface.getCoursePhoto(((Material)object.getData()).getId());
+                    Call<ResponseBody> audio = apiInterface.getMaterialsFile(((Material)object.getData()).getId());
+                    System.out.println("start download audio: " + audioPath.getAbsolutePath());
                     audio.enqueue(new Callback<ResponseBody>() {
                         @Override
                         public void onResponse(Call<ResponseBody> call, final Response<ResponseBody> response) {
@@ -219,9 +220,18 @@ public class MaterialAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                                         ((CourseDetailActivity) context).runOnUiThread(new Runnable() {
                                             @Override
                                             public void run() {
+                                                System.out.println("already download audio: " + audioPath.getAbsolutePath());
                                                 ((AudioViewHolder) holder).floatingActionButton.setEnabled(true);
                                                 ((AudioViewHolder) holder).floatingActionButton.setBackgroundColor(context.getResources().getColor(R.color.title_bar_search_color));
 //                                                ((AudioViewHolder) holder).floatingActionButton.setBackgroundResource(R.mipmap.home_search);
+//                                                try {
+//                                                    mPlayer = MediaPlayer.create(context, Uri.fromFile(audioPath));
+////                                                    mPlayer.setDataSource(audioPath.getAbsolutePath());
+//                                                } catch (IOException e) {
+//                                                    e.printStackTrace();
+//                                                }
+                                                mPlayer = MediaPlayer.create(context, Uri.fromFile(audioPath));
+
                                             }
                                         });
                                         return null;
@@ -244,11 +254,14 @@ public class MaterialAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                                 ((AudioViewHolder) holder).floatingActionButton.setImageResource(R.mipmap.volume);
                                 fabStateVolume = false;
                             } else {
-                                try {
-                                    mPlayer.setDataSource(audioPath.getAbsolutePath());
-                                }catch (IOException e){
-                                    e.printStackTrace();
-                                }
+//                                try {
+                                    if(audioPath.exists()){
+                                        mPlayer = MediaPlayer.create(context, Uri.fromFile(audioPath));
+//                                        mPlayer.setDataSource(audioPath.getAbsolutePath());
+                                    }
+//                                }catch (IOException e){
+//                                    e.printStackTrace();
+//                                }
                                 mPlayer.setLooping(true);
                                 mPlayer.start();
                                 ((AudioViewHolder) holder).floatingActionButton.setImageResource(R.mipmap.mute);
@@ -258,9 +271,19 @@ public class MaterialAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     });
                     break;
                 case Model.PDF_TYPE:
+                    ((PDFViewHolder) holder).courseName.setText(((Material)object.getData()).getMaterialUrl().substring(4));
+                    ((PDFViewHolder) holder).openDate.setText(Utils.DateFormat(((Material)object.getData()).getCreateDate()));
+                    ((PDFViewHolder) holder).description.setText(((Material)object.getData()).getDescription());
+                    ((PDFViewHolder) holder).type.setText(((Material)object.getData()).getMaterialType());
+                    if(((Material)object.getData()).getStatus() == "1"){
+                        ((PDFViewHolder) holder).status.setText("Open");
+                    }else {
+                        ((PDFViewHolder) holder).status.setText("Close");
+                    }
                     final File pdfPath = new File(context.getExternalFilesDir(null) + "/material/"
                             + ((Material)object.getData()).getMaterialUrl().replace("\\","/"));
-                    Call<ResponseBody> pdf = apiInterface.getCoursePhoto(((Material)object.getData()).getId());
+                    Call<ResponseBody> pdf = apiInterface.getMaterialsFile(((Material)object.getData()).getId());
+                    System.out.println("start download pdf: " + pdfPath.getAbsolutePath());
                     pdf.enqueue(new Callback<ResponseBody>() {
                         @Override
                         public void onResponse(Call<ResponseBody> call, final Response<ResponseBody> response) {
@@ -272,9 +295,9 @@ public class MaterialAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                                         ((CourseDetailActivity) context).runOnUiThread(new Runnable() {
                                             @Override
                                             public void run() {
-                                                ((AudioViewHolder) holder).floatingActionButton.setEnabled(true);
-                                                ((AudioViewHolder) holder).floatingActionButton.setBackgroundColor(context.getResources().getColor(R.color.title_bar_search_color));
-//                                                ((AudioViewHolder) holder).floatingActionButton.setBackgroundResource(R.mipmap.home_search);
+                                                System.out.println("already download pdf: " + pdfPath.getAbsolutePath());
+                                                ((PDFViewHolder)holder).progressBar.setVisibility(View.INVISIBLE);
+                                                ((PDFViewHolder)holder).img.setImageResource(R.mipmap.pdf);
                                             }
                                         });
                                         return null;
@@ -285,6 +308,16 @@ public class MaterialAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
                         @Override
                         public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        }
+                    });
+                    ((PDFViewHolder) holder).img.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            System.out.println("click pdf: "+pdfPath.getAbsolutePath());
+                            if(pdfPath.exists()){
+                                System.out.println("exists click pdf: "+pdfPath.getAbsolutePath());
+                                Utils.openFileByPath(context, pdfPath.getAbsolutePath());
+                            }
                         }
                     });
                     break;
@@ -395,22 +428,26 @@ public class MaterialAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     protected static class PDFViewHolder extends RecyclerView.ViewHolder{
 
-        TextView max;
-        TextView min;
-        TextView medium;
-        TextView maxDesc;
-        TextView minDesc;
-        TextView mediumDesc;
+        TextView courseName;
+        TextView description;
+        TextView openDate;
+        TextView type;
+        TextView status;
+        ImageView img;
+        ProgressBar progressBar;
+
 
         protected PDFViewHolder(@NonNull View itemView) {
             super(itemView);
-            max = (TextView)itemView.findViewById(R.id.max);
-            min = (TextView) itemView.findViewById(R.id.min);
-            medium = (TextView) itemView.findViewById(R.id.medium);
-            maxDesc = (TextView)itemView.findViewById(R.id.max_desc);
-            minDesc = (TextView) itemView.findViewById(R.id.min_desc);
-            mediumDesc = (TextView) itemView.findViewById(R.id.medium_desc);
+            courseName = (TextView) itemView.findViewById(R.id.title);
+            description = (TextView) itemView.findViewById(R.id.desc);
+            openDate = (TextView) itemView.findViewById(R.id.openDate);
+            type = (TextView) itemView.findViewById(R.id.level);
+            status = (TextView) itemView.findViewById(R.id.status);
+            img = (ImageView) itemView.findViewById(R.id.img);
+            progressBar = (ProgressBar) itemView.findViewById(R.id.progress_load_photo);
         }
+
     }
 
 }

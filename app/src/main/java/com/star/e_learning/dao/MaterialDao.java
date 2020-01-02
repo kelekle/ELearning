@@ -5,6 +5,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Entity;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
@@ -15,7 +16,7 @@ import java.util.List;
 @Dao
 public interface MaterialDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertMaterial(Material material);
 
     @Query("SELECT * FROM Material ORDER BY create_date desc")
@@ -30,7 +31,7 @@ public interface MaterialDao {
     @Query("SELECT * FROM Material WHERE id =:id")
     LiveData<Material> getMaterialByCourseId(String id);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertMaterials(List<Material> materials);
 
     @Delete

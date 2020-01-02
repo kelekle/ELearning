@@ -1,12 +1,8 @@
 package com.star.e_learning.db;
 
-import android.content.Context;
-
 import androidx.room.Database;
-import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.star.e_learning.api.Utils;
 import com.star.e_learning.bean.Course;
 import com.star.e_learning.bean.Material;
 import com.star.e_learning.bean.Teacher;

@@ -4,10 +4,8 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
-import androidx.room.Database;
 import androidx.room.Room;
 
-import com.star.e_learning.api.Utils;
 import com.star.e_learning.bean.Course;
 import com.star.e_learning.bean.Material;
 import com.star.e_learning.bean.Teacher;
@@ -20,9 +18,7 @@ import com.star.e_learning.db.AppDatabase;
 
 import java.util.List;
 
-import io.reactivex.Flowable;
-
-import static com.star.e_learning.api.AppConfig.DB_NAME;
+import static com.star.e_learning.util.AppConfig.DB_NAME;
 
 public class AppRepository implements UserDao, CourseDao, TeacherDao, MaterialDao {
 

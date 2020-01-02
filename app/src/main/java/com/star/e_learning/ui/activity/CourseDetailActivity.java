@@ -54,12 +54,17 @@ public class CourseDetailActivity extends AppCompatActivity {
         tabs.getTabAt(1).setText("Material");
 //        tabs.setTabTextColors(R.color.colorTextTitle, R.color.title_bar_search_color);
         backcrop = findViewById(R.id.backdrop);
+        backcrop.setImageResource(R.mipmap.math_course);
         if(getIntent().getStringExtra("ishot").contains("yes")){
-            Glide.with(CourseDetailActivity.this).load(Uri.fromFile(new File(
-                    getExternalFilesDir(null) + "/hotcourse/" + getIntent().getStringExtra("avatar")))).into(backcrop);
+            File file = new File(
+                    getExternalFilesDir(null) + "/hotcourses/" + getIntent().getStringExtra("avatar").replace("\\", "/"));
+            System.out.println(file.getAbsolutePath());
+            Glide.with(CourseDetailActivity.this).load(Uri.fromFile(file)).into(backcrop);
         }else {
-            Glide.with(CourseDetailActivity.this).load(Uri.fromFile(new File(
-                    getExternalFilesDir(null) + "/course/" + getIntent().getStringExtra("avatar")))).into(backcrop);
+            File file = new File(
+                    getExternalFilesDir(null) + "/courses/" + getIntent().getStringExtra("avatar").replace("\\", "/"));
+            System.out.println(file.getAbsolutePath());
+            Glide.with(CourseDetailActivity.this).load(Uri.fromFile(file)).into(backcrop);
         }
     }
 

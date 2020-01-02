@@ -11,7 +11,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.star.e_learning.R;
-import com.star.e_learning.api.AppConfig;
+import com.star.e_learning.util.AppConfig;
 
 public class WebViewActivity extends AppCompatActivity {
 

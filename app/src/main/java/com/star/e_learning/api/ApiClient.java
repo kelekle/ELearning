@@ -18,7 +18,7 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.star.e_learning.api.AppConfig.BASE_URL;
+import static com.star.e_learning.util.AppConfig.BASE_URL;
 
 public class ApiClient {
 

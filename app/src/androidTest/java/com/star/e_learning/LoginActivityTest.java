@@ -24,9 +24,11 @@ public class LoginActivityTest {
     public ActivityTestRule<LoginActivity> mActivityRule = new ActivityTestRule<>(LoginActivity.class);
 
     @Test
-    public void qqLoginClickedSuccess() {
-        onView(withId(R.id.iv_login_qq)).perform(click());
-        onView(withText(R.string.toast_qq_login))
+    public void wrongEmail() {
+        onView(withId(R.id.et_login_username)).perform(typeText("123456"));
+        onView(withId(R.id.et_login_pwd)).perform(typeText("12345abcde"));
+        onView(withId(R.id.bt_login_submit)).perform(click());
+        onView(withText("请输入正确的邮箱"))
                 .inRoot(withDecorView(not(is(mActivityRule
                         .getActivity()
                         .getWindow()
@@ -35,11 +37,11 @@ public class LoginActivityTest {
     }
 
     @Test
-    public void loginClickedSuccess() {
-        onView(withId(R.id.et_login_username)).perform(typeText("123456"));
-        onView(withId(R.id.et_login_pwd)).perform(typeText("12345abcde"));
+    public void wrongPassword() {
+        onView(withId(R.id.et_login_username)).perform(typeText("123456@qq.com"));
+        onView(withId(R.id.et_login_pwd)).perform(typeText("12345"));
         onView(withId(R.id.bt_login_submit)).perform(click());
-        onView(withText(R.string.toast_qq_login))
+        onView(withText("请输入6-12位密码"))
                 .inRoot(withDecorView(not(is(mActivityRule
                         .getActivity()
                         .getWindow()

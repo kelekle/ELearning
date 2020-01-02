@@ -9,11 +9,12 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.gson.JsonObject;
 import com.star.e_learning.R;
 import com.star.e_learning.api.ApiClient;
 import com.star.e_learning.api.ApiInterface;
-import com.star.e_learning.api.AppConfig;
-import com.star.e_learning.api.Utils;
+import com.star.e_learning.util.AppConfig;
+import com.star.e_learning.util.Utils;
 import com.star.e_learning.repository.AppRepository;
 
 import retrofit2.Call;
@@ -87,10 +88,10 @@ public class EditDescriptionActivity extends AppCompatActivity implements TextWa
                     return;
                 }
                 final String tx = content.getText().toString();
-                Call<String> call = apiInterface.changeDescription(tx);
-                call.enqueue(new Callback<String>() {
+                Call<JsonObject> call = apiInterface.changeDescription(AppConfig.CURRENT_USER.getEmail(), tx);
+                call.enqueue(new Callback<JsonObject>() {
                     @Override
-                    public void onResponse(Call<String> call, Response<String> response) {
+                    public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         if (response.isSuccessful() && response.body() != null) {
                             //
                             AppConfig.CURRENT_USER.setDescrtption(tx);
@@ -102,7 +103,7 @@ public class EditDescriptionActivity extends AppCompatActivity implements TextWa
                     }
 
                     @Override
-                    public void onFailure(Call<String> call, Throwable t) {
+                    public void onFailure(Call<JsonObject> call, Throwable t) {
                         Utils.showLongToast(EditDescriptionActivity.this, "未知错误，更改失败！");
                     }
                 });

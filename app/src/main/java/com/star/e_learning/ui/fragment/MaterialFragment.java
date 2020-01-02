@@ -37,7 +37,7 @@ import retrofit2.Response;
 
 public class MaterialFragment extends BaseFragment {
 
-    private String cid;
+    public static String cid;
     private RecyclerView rv;
     private MaterialAdapter materialAdapter;
 
@@ -202,13 +202,13 @@ public class MaterialFragment extends BaseFragment {
     public void generateData(){
         Model model;
         for(int i = 0;i < materials.size();i++) {
-            if(materials.get(i).getMaterialType().contains(".mp3")){
+            if(materials.get(i).getMaterialUrl().contains(".mp3")){
                 model = new Model(Model.AUDIO_TYPE, materials.get(i));
             }
-            else if(materials.get(i).getMaterialType().contains(".mp4")){
+            else if(materials.get(i).getMaterialUrl().contains(".mp4")){
                 model = new Model(Model.VIDEO_TYPE, materials.get(i));
             }
-            else if(materials.get(i).getMaterialType().contains(".pdf")){
+            else if(materials.get(i).getMaterialUrl().contains(".pdf")){
                 model = new Model(Model.PDF_TYPE, materials.get(i));
             }
             else {

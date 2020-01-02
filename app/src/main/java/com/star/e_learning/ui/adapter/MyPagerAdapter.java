@@ -8,7 +8,6 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.star.e_learning.ui.fragment.CourseFragment;
 import com.star.e_learning.ui.fragment.MeFragment;
-import com.star.e_learning.ui.fragment.NotificationsFragment;
 
 import java.util.ArrayList;
 
@@ -21,7 +20,7 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
         super(fm);
         fragments.clear();
         fragments.add(new CourseFragment());
-        fragments.add(new NotificationsFragment());
+//        fragments.add(new NotificationsFragment());
         fragments.add(new MeFragment());
     }
 

@@ -114,7 +114,6 @@
                 android:ellipsize="end"
                 android:text="Source" />
 
-
             <TextView
                 android:id="@+id/status"
                 android:layout_width="wrap_content"
@@ -128,17 +127,6 @@
                 android:singleLine="true"
                 android:ellipsize="end"
                 android:text="Time" />
-
-            <TextView
-                android:id="@+id/options_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/desc"
-                android:layout_marginTop="10dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="16dp"
-                android:text="&#8942;"
-                android:textAppearance="?android:textAppearanceLarge" />
 
         </RelativeLayout>
 

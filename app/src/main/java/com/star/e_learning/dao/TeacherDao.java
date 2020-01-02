@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
@@ -14,7 +15,7 @@ import java.util.List;
 @Dao
 public interface TeacherDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertTeacher(Teacher teacher);
 
     @Query("SELECT * FROM Teacher")
@@ -29,7 +30,7 @@ public interface TeacherDao {
     @Query("DELETE FROM Teacher WHERE course_id = :cid")
     void deleteTeacherByCourseId(String cid);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertTeachers(List<Teacher> teachers);
 
     @Delete

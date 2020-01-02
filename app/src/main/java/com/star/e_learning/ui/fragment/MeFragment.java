@@ -1,5 +1,6 @@
 package com.star.e_learning.ui.fragment;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,28 +14,32 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.star.e_learning.R;
-import com.star.e_learning.api.AppConfig;
-import com.star.e_learning.repository.AppRepository;
+import com.star.e_learning.api.ApiClient;
+import com.star.e_learning.api.ApiInterface;
+import com.star.e_learning.util.AppConfig;
 import com.star.e_learning.ui.activity.EditUserInfoActivity;
 import com.star.e_learning.ui.activity.LoginActivity;
 import com.star.e_learning.ui.activity.WebViewActivity;
-import com.star.e_learning.api.Utils;
+import com.star.e_learning.util.Utils;
+
+import java.io.File;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MeFragment extends BaseFragment implements View.OnClickListener{
 
     private LinearLayout flContainer;
     private Button exit;
     private CircleImageView head;
-    private TextView about, msg, usersafe, username;
-
-    private AppRepository repository;
+    private TextView about, username, msg;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = initView(inflater, container, savedInstanceState);
-        repository = new AppRepository(getContext());
         return root;
     }
 
@@ -43,7 +48,13 @@ public class MeFragment extends BaseFragment implements View.OnClickListener{
         exit.setOnClickListener(this);
         about.setOnClickListener(this);
         msg.setOnClickListener(this);
-        usersafe.setOnClickListener(this);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        initData();
+        setListener();
     }
 
     @Override
@@ -58,10 +69,10 @@ public class MeFragment extends BaseFragment implements View.OnClickListener{
                 getActivity().finish();
                 break;
             case R.id.txt_msgtip:
+                if(AppConfig.CURRENT_USER == null){
+                    return;
+                }
                 Utils.start_Activity(getActivity(), EditUserInfoActivity.class);
-                break;
-            case R.id.txt_usersafe:
-
                 break;
             default:
                 break;
@@ -73,110 +84,58 @@ public class MeFragment extends BaseFragment implements View.OnClickListener{
         View root = inflater.inflate(R.layout.fragment_me, container, false);
         flContainer = root.findViewById(R.id.container);
         exit = root.findViewById(R.id.btnexit);
-        msg = root.findViewById(R.id.txt_msgtip);
-        usersafe = root.findViewById(R.id.txt_usersafe);
         about = root.findViewById(R.id.txt_about);
         head = root.findViewById(R.id.head);
         username = root.findViewById(R.id.username);
+        msg = root.findViewById(R.id.txt_msgtip);
         return root;
     }
 
-//    public void getUserByNetwork(){
-//        ApiInterface apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
-//        Call<User> call;
-//        call = apiInterface.getUser(Utils.getCurrentEmail(getContext()));
-//        call.enqueue(new Callback<User>() {
-//            @Override
-//            public void onResponse(Call<User> call, Response<User> response) {
-//                if (response.isSuccessful() && response.body() != null) {
-//                    User user = response.body();
-//                    username.setText(user.getUsername());
-////                    repository.deleteUser();
-//                    repository.insertUser(user);
-//                }else{
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<User> call, Throwable t) {
-//
-//            }
-//        });
-//    }
-
-//    public void getUserPhoto(User user) {
-//        final String path = Environment.getDownloadCacheDirectory() + "/media_cache/" + user.getPhoto();
-//        File photo = new File(path);
-//        if (!photo.exists()) {
-//            File file = new File(Environment.getDownloadCacheDirectory() + "/media_cache/user/" + user.getUserid());
-//            if (!file.exists()) {
-//                file.mkdir();
-//            }
-//            ApiInterface apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
-//            apiInterface.getUserPhoto(Utils.getCurrentEmail(getContext()))
-//                    .flatMap(new Function<ResponseBody, Publisher<Boolean>>() {
-//                        @Override
-//                        public Publisher<Boolean> apply(final ResponseBody responseBody) throws Exception {
-//                            return Flowable.create(new FlowableOnSubscribe<Boolean>() {
-//                                @Override
-//                                public void subscribe(FlowableEmitter<Boolean> e) throws Exception {
-//                                    File file1 = new File(path);
-//                                    InputStream inputStream = null;
-//                                    OutputStream outputStream = null;
-//                                    try {
-//                                        try {
-//                                            int readLen;
-//                                            byte[] buffer =new byte[1024];
-//                                            inputStream = responseBody.byteStream();
-//                                            outputStream = new FileOutputStream(file1);
-//                                            while ((readLen = inputStream.read(buffer)) != -1 && !e.isCancelled()){
-//                                                outputStream.write(buffer, 0, readLen);
-//                                                outputStream.flush();
-//                                                e.onComplete();
-//                                            }
-//                                        }finally {
-//                                            if(outputStream != null){
-//                                                outputStream.close();
-//                                            }
-//                                            if(inputStream != null){
-//                                                inputStream.close();
-//                                            }
-//                                            if(responseBody != null){
-//                                                responseBody.close();
-//                                            }
-//                                        }
-//                                    }catch (Exception e1){
-//                                        e1.printStackTrace();
-//                                    }
-//                                }
-//                            }, BackpressureStrategy.LATEST);
-//                        }
-//                    });
-//        }
-//            Glide.with(getContext()).load(Uri.fromFile(photo.getAbsoluteFile())).into(head);
-
-//        call.enqueue(new Callback<ResponseBody>() {
-//            @Override
-//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                if (response.isSuccessful() && response.body() != null) {
-////                    User user = response.body();
-////                    username.setText(user.getUsername());
-////                    AppDatabase.getDatabase(getContext()).userDao().insertUser(user);
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResponseBody> call, Throwable t) {
-//
-//            }
-//        });
-//        }
-//    }
-
     @Override
     protected void initData() {
+        System.out.println("rrrrrrrrrrrrrrrrrrrrrrr");
+        ApiInterface apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+        if(AppConfig.CURRENT_USER != null) {
+            username.setText(AppConfig.CURRENT_USER.getUsername());
+            File file = new File(getContext().getExternalFilesDir(null).getAbsolutePath()
+                    + "/user/" + AppConfig.CURRENT_USER.getUserid() + "/head.jpg");
+            if (file.exists()) {
+                head.setImageBitmap(Utils.getLocalBitmap(getContext().getExternalFilesDir(null).getAbsolutePath()
+                        + "/user/" + AppConfig.CURRENT_USER.getUserid() + "/head.jpg"));
+            } else {
+                final File photo = new File(getContext().getExternalFilesDir(null).getAbsolutePath()
+                        + "/user/" + AppConfig.CURRENT_USER.getUserid() + "/head.jpg");
+                System.out.println("start download user head");
+                Call<ResponseBody> call1 = apiInterface.getUserPhoto(AppConfig.CURRENT_USER.getPhoto().replace("\\","/"));
+                call1.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, final Response<ResponseBody> response) {
+                        if (response.isSuccessful() && response.body() != null) {
+                            new AsyncTask<Void, Void, Void>() {
+                                @Override
+                                protected Void doInBackground(Void... voids) {
+                                    Utils.writeResponseBodyToDisk(photo.getAbsolutePath(), response.body());
+                                    System.out.println("already download user head");
+                                    getActivity().runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            head.setImageBitmap(Utils.getLocalBitmap(getContext().getExternalFilesDir(null).getAbsolutePath()
+                                                    + "/user/" + AppConfig.CURRENT_USER.getUserid() + "/head.jpg"));
+                                        }
+                                    });
+                                    return null;
+                                }
+                            }.execute();
+                        }
+                    }
 
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                    }
+                });
+            }
+        }
     }
 
     @Override

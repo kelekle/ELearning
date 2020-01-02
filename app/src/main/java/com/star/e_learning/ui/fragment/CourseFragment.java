@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.star.e_learning.PollingIntentService;
 import com.star.e_learning.R;
 import com.star.e_learning.repository.AppRepository;
 import com.star.e_learning.ui.activity.CourseDetailActivity;
@@ -111,6 +112,8 @@ public class CourseFragment extends BaseFragment implements View.OnClickListener
                     swipeRefreshLayout.setRefreshing(false);
                     repository.deleteAllCourses();
                     repository.insertCourses(courseList);
+                    Intent intent = new Intent(getActivity(), PollingIntentService.class);
+                    getActivity().startService(intent);
                 } else {
                     coursesTitle.setVisibility(View.INVISIBLE);
                     swipeRefreshLayout.setRefreshing(false);
@@ -305,7 +308,8 @@ public class CourseFragment extends BaseFragment implements View.OnClickListener
     }
 
     public void updateIndicatorStatus(int lastTopItem){
-        if(lastTopItem != currentTopItem) {
+        System.out.println("last "+lastTopItem+"  cur "+currentTopItem);
+        if(lastTopItem != currentTopItem && iv_dots.size()>0) {
             iv_dots.get(lastTopItem).setImageResource(R.mipmap.dot_blur);
             iv_dots.get(currentTopItem).setImageResource(R.mipmap.dot_focus);
         }

@@ -89,7 +89,7 @@
                     android:paddingBottom="18dp"
                     android:hint="@string/register_verification"
                     android:minLines="1"
-                    android:maxLength="4"
+                    android:maxLength="6"
                     android:focusable="true">
                 </EditText>
                 <LinearLayout
@@ -155,6 +155,7 @@
                     android:textColorHint="@color/blackk"
                     android:paddingStart="60dp"
                     android:paddingBottom="18dp"
+                    android:inputType="textPassword"
                     android:hint="@string/register_password"
                     android:minLines="1"
                     android:maxLength="12"
@@ -191,6 +192,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:textColorHint="@color/blackk"
+                    android:inputType="textPassword"
                     android:paddingStart="60dp"
                     android:paddingBottom="18dp"
                     android:hint="@string/register_confirm_password"

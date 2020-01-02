@@ -2,22 +2,17 @@ package com.star.e_learning.ui.activity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.Observer;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 
 import com.star.e_learning.R;
-import com.star.e_learning.api.AppConfig;
-import com.star.e_learning.api.Utils;
-import com.star.e_learning.bean.Course;
+import com.star.e_learning.util.AppConfig;
+import com.star.e_learning.util.Utils;
 import com.star.e_learning.bean.User;
 import com.star.e_learning.repository.AppRepository;
-
-import java.util.List;
 
 public class SplashActivity extends AppCompatActivity {
 

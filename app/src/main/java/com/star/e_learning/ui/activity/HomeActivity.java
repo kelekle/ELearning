@@ -1,22 +1,20 @@
 package com.star.e_learning.ui.activity;
 
-import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationViewPager;
+import com.star.e_learning.PollingReceiver;
 import com.star.e_learning.R;
-import com.star.e_learning.api.Utils;
 import com.star.e_learning.ui.fragment.BaseFragment;
 
 import com.star.e_learning.ui.adapter.*;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -24,17 +22,17 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private MyPagerAdapter adapter;
     private AHBottomNavigationViewPager viewPager;
     private AHBottomNavigation bottomNavigation;
-//    private NavigationView navigationView;
-//    private DrawerLayout drawerLayout;
-    private TextView search;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home);
         initUI();
-        setListener();
+//        setListener();
+//        LocalBroadcastManager mLocalBroadcastManager = LocalBroadcastManager.getInstance(this);
+//        PollingReceiver mBroadcastReceiver = new PollingReceiver();
+//        IntentFilter intentFilter = new IntentFilter();
+//        mLocalBroadcastManager.registerReceiver(mBroadcastReceiver, intentFilter);
     }
 
     @Override
@@ -46,26 +44,23 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public void setListener(){
-        search.setOnClickListener(this);
-    }
 
     public void initUI(){
 //        drawerLayout = findViewById(R.id.drawer_layout);
 //        navigationView = findViewById(R.id.nav_view);
-        search = findViewById(R.id.tv_titleBar_search);
+//        search = findViewById(R.id.tv_titleBar_search);
         viewPager = findViewById(R.id.view_pager);
         bottomNavigation = (AHBottomNavigation) findViewById(R.id.bottom_navigation);
 
 // Create items
         AHBottomNavigationItem item1 = new AHBottomNavigationItem(R.string.title_course, R.mipmap.my_course, R.color.color_tab_1);
-        AHBottomNavigationItem item2 = new AHBottomNavigationItem(R.string.title_notifications, R.mipmap.my_notification, R.color.color_tab_2);
+//        AHBottomNavigationItem item2 = new AHBottomNavigationItem(R.string.title_notifications, R.mipmap.my_notification, R.color.color_tab_2);
         AHBottomNavigationItem item4 = new AHBottomNavigationItem(R.string.title_me, R.mipmap.ic_me, R.color.color_tab_3);
 
 
 // Add items
         bottomNavigation.addItem(item1);
-        bottomNavigation.addItem(item2);
+//        bottomNavigation.addItem(item2);
         bottomNavigation.addItem(item4);
 
         bottomNavigation.setTranslucentNavigationEnabled(true);

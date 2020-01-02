@@ -19,12 +19,11 @@ import com.bumptech.glide.Glide;
 import com.star.e_learning.R;
 import com.star.e_learning.api.ApiClient;
 import com.star.e_learning.api.ApiInterface;
-import com.star.e_learning.api.AppConfig;
-import com.star.e_learning.api.Utils;
+import com.star.e_learning.util.AppConfig;
+import com.star.e_learning.util.Utils;
 import com.star.e_learning.bean.Course;
 import com.star.e_learning.bean.Model;
 import com.star.e_learning.bean.MultiComment;
-import com.star.e_learning.ui.activity.CourseDetailActivity;
 import com.star.e_learning.ui.activity.HomeActivity;
 
 import java.io.File;
@@ -196,7 +195,6 @@ public class CourseItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                     ((LectureHolder) holder).description.setText(((Course)object.getData()).getDescription());
                     ((LectureHolder) holder).level.setText(((Course)object.getData()).getLevel());
                     ((LectureHolder) holder).status.setText(((Course)object.getData()).getStatus());
-                    System.out.println(AppConfig.BASE_RESOURCE_URL + ((Course)object.getData()).getAvatar().replace('\\', '/'));
                     final File photo3 = new File(context.getExternalFilesDir(null).getAbsolutePath()
                             + "/courses/" + ((Course)object.getData()).getAvatar().replace('\\','/'));
                     ApiInterface apiInterface3 = ApiClient.getApiClient().create(ApiInterface.class);

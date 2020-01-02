@@ -7,8 +7,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -18,22 +16,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.star.e_learning.ELearnApplication;
 import com.star.e_learning.R;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.star.e_learning.api.ApiClient;
 import com.star.e_learning.api.ApiInterface;
-import com.star.e_learning.api.AppConfig;
-import com.star.e_learning.api.Utils;
+import com.star.e_learning.util.AppConfig;
+import com.star.e_learning.util.Utils;
 import com.star.e_learning.bean.User;
 import com.star.e_learning.repository.AppRepository;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -43,7 +38,6 @@ import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.PlatformDb;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.tencent.qq.QQ;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -78,7 +72,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         qqLogin.setOnClickListener(this);
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         initValidation();
-//        verifyStoragePermissions();
+        verifyStoragePermissions();
         appRepository = new AppRepository(LoginActivity.this);
     }
 
@@ -102,7 +96,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         @Override
                         public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                             JsonObject object = response.body();
-                            System.out.println(response.body());
+                            dismissProgressDialog();
                             if (response.isSuccessful() && response.body() != null) {
                                 System.out.println("bbb");
                                 if (object.get("result").getAsString().equals("success")) {
@@ -111,26 +105,24 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                     Utils.putValue(LoginActivity.this, AppConfig.CURRENT_EMAIL, email);
                                     appRepository.insertUser(user);
                                     AppConfig.CURRENT_USER = user;
-                                    dismissProgressDialog();
                                     intent.setClass(LoginActivity.this, HomeActivity.class);
                                     startActivity(intent);
                                     overridePendingTransition(R.anim.push_up_in, R.anim.push_up_out);
+                                    finish();
+                                }else{
+                                    Toast.makeText(LoginActivity.this,
+                                            "登录失败, " + object.get("msg").getAsString() + "!",
+                                            Toast.LENGTH_LONG).show();
                                 }
-                            }else{
-                                Toast toast = Toast.makeText(LoginActivity.this,
-                                        "登录失败, " + object.get("msg").getAsString() + "!",
-                                        Toast.LENGTH_LONG);
-                                toast.show();
                             }
                         }
 
                         @Override
                         public void onFailure(Call<JsonObject> call, Throwable t) {
                             dismissProgressDialog();
-                            Toast toast = Toast.makeText(LoginActivity.this,
+                            Toast.makeText(LoginActivity.this,
                                     "Network failure, Please Try Again" + t.toString(),
-                                    Toast.LENGTH_LONG);
-                            toast.show();
+                                    Toast.LENGTH_LONG).show();
                         }
                     });
                 }
@@ -148,6 +140,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
                 break;
             case R.id.iv_login_qq:
+                final Intent intentqq = new Intent();
                 Utils.showLongToast(LoginActivity.this, "You are using qq login!");
                 final Platform plat = ShareSDK.getPlatform(QQ.NAME);
                 ShareSDK.setActivity(this);//抖音登录适配安卓9.0
@@ -182,6 +175,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             platDB.getUserId();
                             platDB.getUserName();
                         }
+                        Utils.putBooleanValue(LoginActivity.this, AppConfig.LOGIN_STATE, true);
+                        AppConfig.CURRENT_USER = null;
+                        intentqq.setClass(LoginActivity.this, HomeActivity.class);
+                        startActivity(intentqq);
+                        overridePendingTransition(R.anim.push_up_in, R.anim.push_up_out);
+                        finish();
                     }
 
                     @Override
@@ -191,6 +190,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 });
                 plat.SSOSetting(false);
                 plat.showUser(null);
+                plat.removeAccount(true);
                 break;
         }
     }
@@ -213,7 +213,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 }
             }
-        }, 20000);//超时时间20秒
+        }, 30000);//超时时间30秒
     }
 
     public Boolean dismissProgressDialog() {
@@ -229,17 +229,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {
             "android.permission.READ_EXTERNAL_STORAGE",
-            "android.permission.WRITE_EXTERNAL_STORAGE" };
+            "android.permission.WRITE_EXTERNAL_STORAGE",
+            "android.permission.WRITE_SETTINGS"};
 
     public void verifyStoragePermissions() {
         try {
             //检测是否有写的权限
-            int permission = ActivityCompat.checkSelfPermission(getApplicationContext(),
-                    "android.permission.WRITE_EXTERNAL_STORAGE");
-            if (permission != PackageManager.PERMISSION_GRANTED) {
-                // 没有写的权限，去申请写的权限，会弹出对话框
-                ActivityCompat.requestPermissions(LoginActivity.this, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
-            }
+//            int permission = ActivityCompat.checkSelfPermission(getApplicationContext(),
+//                    "android.permission.WRITE_EXTERNAL_STORAGE");
+//            if (permission != PackageManager.PERMISSION_GRANTED) {
+//                // 没有写的权限，去申请写的权限，会弹出对话框
+//                ActivityCompat.requestPermissions(LoginActivity.this, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
+//            }
+            ActivityCompat.requestPermissions(LoginActivity.this, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
         } catch (Exception e) {
             e.printStackTrace();
         }

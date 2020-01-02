@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
@@ -14,7 +15,7 @@ import java.util.List;
 @Dao
 public interface UserDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertUser(User user);
 
     @Query("SELECT * FROM User")
@@ -26,7 +27,7 @@ public interface UserDao {
     @Query("SELECT * FROM User WHERE email =:email")
     LiveData<User> getUserByEmail(String email);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertUsers(List<User> users);
 
     @Delete

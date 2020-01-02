@@ -6,7 +6,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
-import com.star.e_learning.api.DateConverter;
+import com.star.e_learning.util.DateConverter;
 
 import java.io.Serializable;
 import java.util.Date;

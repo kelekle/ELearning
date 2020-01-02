@@ -8,7 +8,7 @@ import com.star.e_learning.ui.fragment.BaseFragment;
 
 import java.util.List;
 
-public class CourseDetailTabAdapter extends FragmentPagerAdapter {
+public class  CourseDetailTabAdapter extends FragmentPagerAdapter {
 
     List<BaseFragment> fragmentList;
 

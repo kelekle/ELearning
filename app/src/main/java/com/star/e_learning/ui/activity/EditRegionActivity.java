@@ -7,7 +7,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,8 +17,8 @@ import com.google.gson.Gson;
 import com.star.e_learning.R;
 import com.star.e_learning.api.ApiClient;
 import com.star.e_learning.api.ApiInterface;
-import com.star.e_learning.api.AppConfig;
-import com.star.e_learning.api.Utils;
+import com.star.e_learning.util.AppConfig;
+import com.star.e_learning.util.Utils;
 import com.star.e_learning.bean.JsonBean;
 import com.star.e_learning.repository.AppRepository;
 
@@ -121,26 +120,26 @@ public class EditRegionActivity extends AppCompatActivity implements View.OnClic
                 save.setBackgroundColor(getResources().getColor(R.color.login_input_active));
                 save.setEnabled(true);
                 final String tx = opt1tx + "-" + opt2tx + "-" + opt3tx;
-                Call<String> call = apiInterface.changeDescription(tx);
-                call.enqueue(new Callback<String>() {
-                    @Override
-                    public void onResponse(Call<String> call, Response<String> response) {
-                        if (response.isSuccessful() && response.body() != null) {
-                            //
-                            AppConfig.CURRENT_USER.setRegion(tx);
-                            region.setText(tx);
-                            appRepository.updateUser(AppConfig.CURRENT_USER);
-                            finish();
-                        } else {
-                            Utils.showLongToast(EditRegionActivity.this, "未知错误，更改失败！");
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<String> call, Throwable t) {
-                        Utils.showLongToast(EditRegionActivity.this, "未知错误，更改失败！");
-                    }
-                });
+//                Call<String> call = apiInterface.changeRegion(tx);
+//                call.enqueue(new Callback<String>() {
+//                    @Override
+//                    public void onResponse(Call<String> call, Response<String> response) {
+//                        if (response.isSuccessful() && response.body() != null) {
+//                            //
+//                            AppConfig.CURRENT_USER.setRegion(tx);
+//                            region.setText(tx);
+//                            appRepository.updateUser(AppConfig.CURRENT_USER);
+//                            finish();
+//                        } else {
+//                            Utils.showLongToast(EditRegionActivity.this, "未知错误，更改失败！");
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<String> call, Throwable t) {
+//                        Utils.showLongToast(EditRegionActivity.this, "未知错误，更改失败！");
+//                    }
+//                });
             }
         })
                 .setOutSideCancelable(true)

@@ -38,6 +38,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private EditText password;
     private EditText confirmPassword;
     private EditText verify;
+    private TextView getCode;
 
     private Button submit;
 
@@ -57,7 +58,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         verify = findViewById(R.id.et_register_verify);
         submit = findViewById(R.id.bt_register_submit);
         confirmPassword = findViewById(R.id.et_register_confirm_password);
+        getCode = findViewById(R.id.vertifyView);
 
+        getCode.setOnClickListener(this);
         submit.setOnClickListener(this);
         back.setOnClickListener(this);
         verify.setOnClickListener(this);
@@ -68,7 +71,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     public void addValidation() {
         awesomeValidation.addValidation(phone, "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$", "请输入正确的手机号");
-        awesomeValidation.addValidation(verify, "^\\d{4}", "验证码为4位数字");
+        awesomeValidation.addValidation(verify, "^\\w{6}", "验证码为6位字符");
         awesomeValidation.addValidation(password, "^[\\w]{6,12}$", "请输入6-12位密码");
         awesomeValidation.addValidation(confirmPassword, password, "两次密码不一致");
     }
@@ -80,15 +83,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 if (awesomeValidation.validate()) {
                     final Intent intent = new Intent();
                     ApiInterface apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
-                    Call<String> call;
+                    Call<JsonObject> call;
                     call = apiInterface.register(phone.getText().toString().trim(),
                             password.getText().toString().trim(), verify.getText().toString().trim());
                     showProgressDialog(this, "正在注册...");
-                    call.enqueue(new Callback<String>() {
+                    call.enqueue(new Callback<JsonObject>() {
                         @Override
-                        public void onResponse(Call<String> call, Response<String> response) {
+                        public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                             if (response.isSuccessful() && response.body() != null) {
-                                JsonObject jsonObject = (JsonObject) new JsonParser().parse(response.body());
+                                JsonObject jsonObject = response.body();
                                 if (jsonObject.get("result").getAsString().equals("success")) {
                                     Toast.makeText(RegisterActivity.this,
                                             "注册成功!", Toast.LENGTH_LONG).show();
@@ -109,7 +112,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         }
 
                         @Override
-                        public void onFailure(Call<String> call, Throwable t) {
+                        public void onFailure(Call<JsonObject> call, Throwable t) {
                             dismissProgressDialog();
                             Toast toast = Toast.makeText(RegisterActivity.this,
                                     "Network failure, Please Try Again" + t.toString(),
@@ -138,19 +141,19 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     Toast.makeText(RegisterActivity.this,"输入正确的邮箱!", Toast.LENGTH_SHORT).show();
                 }else {
                     ApiInterface apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
-                    Call<String> call;
+                    Call<JsonObject> call;
                     call = apiInterface.getCode(phone.getText().toString().trim());
-                    call.enqueue(new Callback<String>() {
+                    call.enqueue(new Callback<JsonObject>() {
                         @Override
-                        public void onResponse(Call<String> call, Response<String> response) {
+                        public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                             if (response.isSuccessful() && response.body() != null) {
-                                JsonObject jsonObject = (JsonObject) new JsonParser().parse(response.body());
+                                JsonObject jsonObject = response.body();
                                 Toast.makeText(RegisterActivity.this, jsonObject.get("result").getAsString(),Toast.LENGTH_SHORT).show();
                             }
                         }
 
                         @Override
-                        public void onFailure(Call<String> call, Throwable t) {
+                        public void onFailure(Call<JsonObject> call, Throwable t) {
                             Toast.makeText(RegisterActivity.this, t.toString(),Toast.LENGTH_SHORT).show();
                         }
                     });
