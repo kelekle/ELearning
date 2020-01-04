@@ -3,13 +3,17 @@ package com.star.e_learning.ui.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import android.annotation.TargetApi;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -25,6 +29,7 @@ import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.star.e_learning.api.ApiClient;
 import com.star.e_learning.api.ApiInterface;
 import com.star.e_learning.util.AppConfig;
+import com.star.e_learning.util.SystemBarTintManager;
 import com.star.e_learning.util.Utils;
 import com.star.e_learning.bean.User;
 import com.star.e_learning.repository.AppRepository;
@@ -59,6 +64,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Making notification bar transparent
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+
+            setTranslucentStatus(true);
+
+            SystemBarTintManager tintManager = new SystemBarTintManager(this);
+
+            tintManager.setStatusBarTintEnabled(true);
+
+            tintManager.setStatusBarTintResource(R.color.home_title_bar_color);//通知栏所需颜色
+
+        }
         setContentView(R.layout.activity_login);
         login = findViewById(R.id.bt_login_submit);
         forget = findViewById(R.id.tv_login_forget_pwd);
@@ -73,7 +90,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         initValidation();
         verifyStoragePermissions();
-        appRepository = new AppRepository(LoginActivity.this);
+        appRepository = AppRepository.getAppRepository(LoginActivity.this);
+    }
+
+    @TargetApi(19)
+    private void setTranslucentStatus(boolean on) {
+        Window win = getWindow();
+        WindowManager.LayoutParams winParams = win.getAttributes();
+        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
+        if (on) {
+            winParams.flags |= bits;
+        } else {
+            winParams.flags &= ~bits;
+        }
+        win.setAttributes(winParams);
     }
 
     public void initValidation(){

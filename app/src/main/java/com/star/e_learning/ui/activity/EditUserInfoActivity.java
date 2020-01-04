@@ -9,10 +9,12 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -90,6 +92,10 @@ public class EditUserInfoActivity extends AppCompatActivity implements View.OnCl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Making notification bar transparent
+        if (Build.VERSION.SDK_INT >= 21) {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        }
         initView();
         initData();
         setListener();
@@ -151,7 +157,7 @@ public class EditUserInfoActivity extends AppCompatActivity implements View.OnCl
                 });
             }
         }
-        appRepository = new AppRepository(EditUserInfoActivity.this);
+        appRepository = AppRepository.getAppRepository(EditUserInfoActivity.this);
     }
 
     protected void initView() {

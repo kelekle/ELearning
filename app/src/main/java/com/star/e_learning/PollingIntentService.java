@@ -62,7 +62,7 @@ public class PollingIntentService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         final ApiInterface apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
-        appRepository = new AppRepository(PollingIntentService.this);
+        appRepository = AppRepository.getAppRepository(PollingIntentService.this);
         while(!linkSign) {
             System.out.println("开始请求");
             Log.e("开始请求", "" + System.currentTimeMillis());

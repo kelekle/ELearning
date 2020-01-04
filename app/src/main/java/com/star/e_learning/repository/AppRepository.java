@@ -22,10 +22,29 @@ import static com.star.e_learning.util.AppConfig.DB_NAME;
 
 public class AppRepository implements UserDao, CourseDao, TeacherDao, MaterialDao {
 
+//    private AppDatabase appDatabase;
+//
+//    public AppRepository(Context context) {
+//        appDatabase = Room.databaseBuilder(context, AppDatabase.class, DB_NAME).build();
+//    }
+
+    private static AppRepository INSTANCE;
+
     private AppDatabase appDatabase;
 
-    public AppRepository(Context context) {
+    private AppRepository(Context context) {
         appDatabase = Room.databaseBuilder(context, AppDatabase.class, DB_NAME).build();
+    }
+
+    public static AppRepository getAppRepository(final Context context) {
+        if (INSTANCE == null) {
+            synchronized (AppRepository.class) {
+                if (INSTANCE == null)    {
+                    INSTANCE = new AppRepository(context);
+                }
+            }
+        }
+        return INSTANCE;
     }
 
     //user dao

@@ -34,5 +34,24 @@
     <string name="tab_text_2">Tab 2</string>
     <string name="toast_qq_login">You are using qq login!</string>
 
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
+
+    <string name="slide_1_title">Welcome to Elearning!</string>
+    <string name="slide_1_desc">The easiest way to learn course is through platform!</string>
+
+
+    <string name="slide_2_title">Get Start!</string>
+    <string name="slide_2_desc">Let us start to Learn!</string>
+
+    <string name="slide_3_title">Advance Skill</string>
+    <string name="slide_3_desc">Let us study advance skill!</string>
+
+    <string name="slide_4_title">E-Learning Travel</string>
+    <string name="slide_4_desc">Enjoy the process of learning and share it with your friends, that sounds great!</string>
+
+    <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
+    <string name="play_again">Play Again</string>
 
 </resources>

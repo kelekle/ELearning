@@ -1,9 +1,11 @@
 package com.star.e_learning.ui.activity;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,8 +37,12 @@ public class EditUsernameActivity extends AppCompatActivity implements
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_edit_username);
         super.onCreate(savedInstanceState);
+        // Making notification bar transparent
+        if (Build.VERSION.SDK_INT >= 21) {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        }
+        setContentView(R.layout.activity_edit_username);
         img_back = (ImageView) findViewById(R.id.img_back);
         materialEditText = findViewById(R.id.edit_input_content);
         materialEditText.setText(AppConfig.CURRENT_USER.getUsername());
@@ -61,7 +67,7 @@ public class EditUsernameActivity extends AppCompatActivity implements
                 save.setEnabled(true);
             }
         });
-        appRepository = new AppRepository(EditUsernameActivity.this);
+        appRepository = AppRepository.getAppRepository(EditUsernameActivity.this);
     }
 
     @Override

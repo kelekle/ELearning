@@ -71,7 +71,7 @@ public class CourseFragment extends BaseFragment implements View.OnClickListener
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         topCourses = new ArrayList<Course>();
-        repository = new AppRepository(getContext());
+        repository = AppRepository.getAppRepository(getContext());
         return initView(inflater, container, savedInstanceState);
     }
 

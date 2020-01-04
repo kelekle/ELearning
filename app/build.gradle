@@ -71,11 +71,6 @@ dependencies {
     //gson
     implementation 'com.squareup.retrofit2:converter-gson:2.7.0'
 
-    //rxjava
-//    implementation 'android.arch.persistence.room:rxjava2:1.1.1'
-//    implementation 'io.reactivex:rxjava:1.0.14'
-//    implementation 'io.reactivex:rxandroid:1.0.1'
-
     // Room依赖
     implementation 'android.arch.persistence.room:runtime:1.1.1'
     annotationProcessor "android.arch.persistence.room:compiler:1.1.1"

@@ -56,7 +56,7 @@ public class MaterialFragment extends BaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = initView(inflater, container, savedInstanceState);
-        repository = new AppRepository(getContext());
+        repository = AppRepository.getAppRepository(getContext());
         return root;
     }
 
